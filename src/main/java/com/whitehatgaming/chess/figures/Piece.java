@@ -28,7 +28,7 @@ public abstract class Piece {
             field.clear();
             dst.setPiece(srcPiece);
             srcPiece.setField(dst);
-            isOnInitialPosition = false; //TODO CHECK IF THIS IS MANDATORY FOR ALL PIECES OR IT COULD BE MOVED TO KING AND PAWN ONLY
+            isOnInitialPosition = false;
             return true;
         } else {
             return false;
@@ -36,6 +36,7 @@ public abstract class Piece {
     }
 
     protected boolean assemblePossibleFields(List<Field> possibleFields, Field field) {
+        if (field == null) return false;
         if (field.isEmpty()) {
             possibleFields.add(field);
         } else {

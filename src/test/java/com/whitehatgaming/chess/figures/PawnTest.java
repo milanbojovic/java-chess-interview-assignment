@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PawnTest {
 
-    static Pawn uat;
+    static Pawn sut;
     static Board board;
 
     @BeforeAll
@@ -22,34 +22,34 @@ class PawnTest {
 
     @Test
     void possibleFieldsAgainstInitialPosition() {
-        uat = new Pawn(board.getField(1, 7), board, PieceType.BLACK);
-        board.getField(2, 0).setPiece(uat);
-        final List<Field> actual = uat.getAllPossibleFields();
+        sut = new Pawn(board.getField(1, 7), board, PieceType.BLACK);
+        board.getField(2, 0).setPiece(sut);
+        final List<Field> actual = sut.getAllPossibleFields();
 
         assertEquals(2, actual.size());
         assertEquals(board.getField(2, 7), actual.get(0));
         assertEquals(board.getField(3, 7), actual.get(1));
-        assertEquals("p", uat.toString());
+        assertEquals("p", sut.toString());
     }
 
     @Test
     void possibleFieldsAgainstFullEnemyDefense() {
-        Pawn uat = new Pawn(board.getField(2, 0), board, PieceType.WHITE);
-        uat.setOnInitialPosition(false);
-        board.getField(1, 7).setPiece(uat);
-        final List<Field> actual = uat.getAllPossibleFields();
+        Pawn sut = new Pawn(board.getField(2, 0), board, PieceType.WHITE);
+        sut.setOnInitialPosition(false);
+        board.getField(1, 7).setPiece(sut);
+        final List<Field> actual = sut.getAllPossibleFields();
 
         assertEquals(1, actual.size());
         assertEquals(board.getField(1, 1), actual.get(0));
-        assertEquals("P", uat.toString());
+        assertEquals("P", sut.toString());
     }
 
     @Test
     void possibleFieldsAgainstInitialPositionUnderAttack() {
-        uat = new Pawn(board.getField(1, 1), board, PieceType.BLACK);
-        board.getField(1, 1).setPiece(uat);
+        sut = new Pawn(board.getField(1, 1), board, PieceType.BLACK);
+        board.getField(1, 1).setPiece(sut);
 
-        final List<Field> actual = uat.getAllPossibleFields();
+        final List<Field> actual = sut.getAllPossibleFields();
         assertEquals(2, actual.size());
         assertEquals(board.getField(2, 1), actual.get(0));
         assertEquals(board.getField(3, 1), actual.get(1));
@@ -57,11 +57,11 @@ class PawnTest {
 
     @Test
     void possibleFieldsAgainstPieceAttacking() {
-        uat = new Pawn(board.getField(6, 2), board, PieceType.BLACK);
-        uat.setOnInitialPosition(false);
-        board.getField(6, 2).setPiece(uat);
+        sut = new Pawn(board.getField(6, 2), board, PieceType.BLACK);
+        sut.setOnInitialPosition(false);
+        board.getField(6, 2).setPiece(sut);
 
-        final List<Field> actual = uat.getAllPossibleFields();
+        final List<Field> actual = sut.getAllPossibleFields();
         assertEquals(2, actual.size());
         assertEquals(board.getField(7, 1), actual.get(0));
         assertEquals(board.getField(7, 3), actual.get(1));
@@ -69,22 +69,22 @@ class PawnTest {
 
     @Test
     void possibleFieldsAgainstMiddleBoardAlonePiece() {
-        uat = new Pawn(board.getField(5, 5), board, PieceType.WHITE);
-        uat.setOnInitialPosition(false);
-        board.getField(5, 5).setPiece(uat);
+        sut = new Pawn(board.getField(5, 5), board, PieceType.WHITE);
+        sut.setOnInitialPosition(false);
+        board.getField(5, 5).setPiece(sut);
 
-        final List<Field> actual = uat.getAllPossibleFields();
+        final List<Field> actual = sut.getAllPossibleFields();
         assertEquals(1, actual.size());
         assertEquals(board.getField(4, 5), actual.get(0));
     }
 
     @Test
     void possibleFieldsAgainstPieceAttackingEdge() {
-        uat = new Pawn(board.getField(5, 7), board, PieceType.BLACK);
-        uat.setOnInitialPosition(false);
-        board.getField(5, 7).setPiece(uat);
+        sut = new Pawn(board.getField(5, 7), board, PieceType.BLACK);
+        sut.setOnInitialPosition(false);
+        board.getField(5, 7).setPiece(sut);
 
-        final List<Field> actual = uat.getAllPossibleFields();
+        final List<Field> actual = sut.getAllPossibleFields();
         assertEquals(1, actual.size());
         assertEquals(board.getField(6, 6), actual.get(0));
     }

@@ -23,7 +23,7 @@ public class King extends Piece {
                 if (i == rank && j == file) continue;
 
                 var field = getBoard().getField(i, j);
-                if (assemblePossibleFields(possibleFields, field)) break;
+                assemblePossibleFields(possibleFields, field);
             }
         }
         return possibleFields;

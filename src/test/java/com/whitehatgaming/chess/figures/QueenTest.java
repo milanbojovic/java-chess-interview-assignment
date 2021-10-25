@@ -13,30 +13,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class QueenTest {
-    static Queen uat1;
-    static Queen uat2;
+    static Queen sut1;
+    static Queen sut2;
     static Board board;
 
     @BeforeAll
     static void setUp() {
         board = new Board();
-        uat1 = new Queen(board.getField(7, 3), board, PieceType.WHITE);
-        board.getField(7, 3).setPiece(uat1);
-        uat2 = new Queen(board.getField(3, 6), board, PieceType.BLACK);
-        board.getField(3, 6).setPiece(uat2);
+        sut1 = new Queen(board.getField(7, 3), board, PieceType.WHITE);
+        board.getField(7, 3).setPiece(sut1);
+        sut2 = new Queen(board.getField(3, 6), board, PieceType.BLACK);
+        board.getField(3, 6).setPiece(sut2);
     }
 
     @Test
     void possibleFieldsInitialPosition() {
-        final List<Field> actual = uat1.getAllPossibleFields();
+        final List<Field> actual = sut1.getAllPossibleFields();
 
         assertEquals(0, actual.size());
-        assertEquals("Q", uat1.toString());
+        assertEquals("Q", sut1.toString());
     }
 
     @Test
     void possibleFieldsMiddleFieldEnemyAttackAndFriendlyAttack() {
-        final List<Field> actual = uat2.getAllPossibleFields();
+        final List<Field> actual = sut2.getAllPossibleFields();
 
         assertEquals(17, actual.size());
         assertTrue(actual.containsAll(Arrays.asList(
@@ -57,6 +57,6 @@ class QueenTest {
                 board.getField(4, 5),
                 board.getField(5, 4),
                 board.getField(6, 3))));
-        assertEquals("q", uat2.toString());
+        assertEquals("q", sut2.toString());
     }
 }
