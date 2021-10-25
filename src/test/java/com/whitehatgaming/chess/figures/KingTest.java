@@ -76,21 +76,6 @@ class KingTest {
         assertEquals("K", sut.toString());
     }
 
-    //          0 1 2 3 4 5 6 7
-//              a b c d e f g h
-//              ________________
-//            0|R K B Q K B N R|0   0,4  -->                              black
-//            1|k P P k P Q K b|1   1,0  --> 20 21                        black
-//            2|               |2   13   --> 22 23 24                     black
-//            3|      K     Q  |3   16   --> 05 06 07 15 17 25 26 27      white
-//            4|               |4   33   --> 22 23 24 32 34 42 43 44      white
-//            5|              K|5   57   --> 46 47 56                     white
-//            6|P P P P P P P P|6
-//            7|R K B Q K B K R|7
-//             ------------------
-//              a b c d e f g h
-//              0 1 2 3 4 5 6 7
-
     @Test
     void possibleFieldsBoardCenter() {
         King sut = new King(board.getField(3, 3), board, PieceType.WHITE);
