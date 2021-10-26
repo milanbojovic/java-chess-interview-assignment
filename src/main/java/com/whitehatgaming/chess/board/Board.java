@@ -63,59 +63,38 @@ public class Board {
 
     private void assemblePieces(PieceType pieceType) {
         log.info("Assembling " + pieceType.toString() + " pieces.");
-
         if (pieceType == PieceType.BLACK) {
-            Rook rook = new Rook(fields[0][0], this, pieceType);
-            fields[0][0].setPiece(rook);
-            rook = new Rook(fields[0][7], this, pieceType);
-            fields[0][7].setPiece(rook);
-
-            Knight knight = new Knight(fields[0][1], this, pieceType);
-            fields[0][1].setPiece(knight);
-            knight = new Knight(fields[0][6], this, pieceType);
-            fields[0][6].setPiece(knight);
-
-            Bishop bishop = new Bishop(fields[0][2], this, pieceType);
-            fields[0][2].setPiece(bishop);
-            bishop = new Bishop(fields[0][5], this, pieceType);
-            fields[0][5].setPiece(bishop);
-
-            King king = new King(fields[0][4], this, pieceType);
-            fields[0][4].setPiece(king);
-
-            Queen queen = new Queen(fields[0][3], this, pieceType);
-            fields[0][3].setPiece(queen);
-
-            for (var j = 0; j <= 7; j++) {
-                var pawn = new Pawn(fields[1][j], this, pieceType);
-                fields[1][j].setPiece(pawn);
-            }
+            assembleCastleLine(pieceType, 0, 1);
         } else {
-            Rook rook = new Rook(fields[7][0], this, pieceType);
-            fields[7][0].setPiece(rook);
-            rook = new Rook(fields[7][7], this, pieceType);
-            fields[7][7].setPiece(rook);
+            assembleCastleLine(pieceType, 7, 6);
+        }
+    }
 
-            Knight knight = new Knight(fields[7][1], this, pieceType);
-            fields[7][1].setPiece(knight);
-            knight = new Knight(fields[7][6], this, pieceType);
-            fields[7][6].setPiece(knight);
+    private void assembleCastleLine(PieceType pieceType, int kingdomRow, int pownsRow) {
+        Rook rook = new Rook(fields[kingdomRow][0], this, pieceType);
+        fields[kingdomRow][0].setPiece(rook);
+        rook = new Rook(fields[kingdomRow][7], this, pieceType);
+        fields[kingdomRow][7].setPiece(rook);
 
-            Bishop bishop = new Bishop(fields[7][2], this, pieceType);
-            fields[7][2].setPiece(bishop);
-            bishop = new Bishop(fields[7][5], this, pieceType);
-            fields[7][5].setPiece(bishop);
+        Knight knight = new Knight(fields[kingdomRow][1], this, pieceType);
+        fields[kingdomRow][1].setPiece(knight);
+        knight = new Knight(fields[kingdomRow][6], this, pieceType);
+        fields[kingdomRow][6].setPiece(knight);
 
-            Queen queen = new Queen(fields[7][3], this, pieceType);
-            fields[7][3].setPiece(queen);
+        Bishop bishop = new Bishop(fields[kingdomRow][2], this, pieceType);
+        fields[kingdomRow][2].setPiece(bishop);
+        bishop = new Bishop(fields[kingdomRow][5], this, pieceType);
+        fields[kingdomRow][5].setPiece(bishop);
 
-            King king = new King(fields[7][4], this, pieceType);
-            fields[7][4].setPiece(king);
+        King king = new King(fields[kingdomRow][4], this, pieceType);
+        fields[kingdomRow][4].setPiece(king);
 
-            for (var j = 0; j <= 7; j++) {
-                var pawn = new Pawn(fields[6][j], this, pieceType);
-                fields[6][j].setPiece(pawn);
-            }
+        Queen queen = new Queen(fields[kingdomRow][3], this, pieceType);
+        fields[kingdomRow][3].setPiece(queen);
+
+        for (var j = 0; j <= 7; j++) {
+            var pawn = new Pawn(fields[pownsRow][j], this, pieceType);
+            fields[pownsRow][j].setPiece(pawn);
         }
     }
 
